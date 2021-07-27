@@ -1,73 +1,75 @@
 <?php
 	
-	class RecetasController {
+	class CitasController {
 		
 		public function __construct(){
-			require_once "models/RecetasModel.php";
+			require_once "models/CitasModel.php";
 		}
 		
 		public function index(){
 			
 			
-			$recetas = new Recetas_model();
-			$data["titulo"] = "Recetas";
-			$data["recetas"] = $recetas->get_recetas();
+			$citas = new Citas_model();
+			$data["titulo"] = "Citas";
+			$data["citas"] = $citas->get_citas();
 			
-			require_once "views/recetas/recetas.php";	
+			require_once "views/citas/citas.php";	
 		}
 		
 		public function nuevo(){
 			
-			$data["titulo"] = "Recetas";
-			require_once "views/recetas/recetas_nuevo.php";
+			$data["titulo"] = "Citas";
+			require_once "views/citas/citas_nuevo.php";
 		}
 		
 		public function guarda(){
 			
-			$nombre = $_POST['nombre'];
-			$calorias = $_POST['calorias'];
-			$tiempo = $_POST['tiempo'];
-			$porcion = $_POST['porcion'];
-			$imagen = $_POST['imagen'];
-			$procedimiento = $_POST['procedimiento'];
-			
-			$recetas = new Recetas_model();
-			$recetas->insertar($nombre, $calorias, $tiempo, $porcion, $imagen, $procedimiento);
-			$data["titulo"] = "Recetas";
+			$usuario = $_POST['usuario'];
+			$fecha = $_POST['fecha'];
+			$hora = $_POST['hora'];
+			$sucursal = $_POST['sucursal'];
+			$especialidad = $_POST['especialidad'];
+			$doctor = $_POST['doctor'];
+			$descripcion = $_POST['descripcion'];
+
+			$citas = new Citas_model();
+			$citas->insertar($usuario, $fecha, $hora, $sucursal, $especialidad, $doctor, $descripcion);
+			$data["titulo"] = "Citas";
 			$this->index();
 		}
 		
 		public function modificar($id){
 			
-			$recetas = new Recetas_model();
+			$citas = new Citas_model();
 			
 			$data["id"] = $id;
-			$data["recetas"] = $recetas->get_receta($id);
-			$data["titulo"] = "Recetas";
-			require_once "views/recetas/recetas_modifica.php";
+			$data["citas"] = $citas->get_cita($id);
+			$data["titulo"] = "Citas";
+			require_once "views/citas/citas_modifica.php";
 		}
 		
 		public function actualizar(){
 
 			$id = $_POST['id'];
-			$nombre = $_POST['nombre'];
-			$calorias = $_POST['calorias'];
-			$tiempo = $_POST['tiempo'];
-			$porcion = $_POST['porcion'];
-			$imagen = $_POST['imagen'];
-			$procedimiento = $_POST['procedimiento'];
+			$usuario = $_POST['usuario'];
+			$fecha = $_POST['fecha'];
+			$hora = $_POST['hora'];
+			$sucursal = $_POST['sucursal'];
+			$especialidad = $_POST['especialidad'];
+			$doctor = $_POST['doctor'];
+			$descripcion = $_POST['descripcion'];
 
-			$recetas = new Recetas_model();
-			$recetas->modificar($id, $nombre, $calorias, $tiempo, $porcion, $imagen, $procedimiento);
-			$data["titulo"] = "Recetas";
+			$citas = new Citas_model();
+			$citas->modificar($id, $usuario, $fecha, $hora, $sucursal, $especialidad, $doctor, $descripcion);
+			$data["titulo"] = "Citas";
 			$this->index();
 		}
 		
 		public function eliminar($id){
 			
-			$recetas = new Recetas_model();
-			$recetas->eliminar($id);
-			$data["titulo"] = "Recetas";
+			$citas = new Citas_model();
+			$citas->eliminar($id);
+			$data["titulo"] = "Citas";
 			$this->index();
 		}	
 	}
