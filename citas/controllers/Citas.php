@@ -1,25 +1,25 @@
 <?php
 	
-	class RecetasController {
+	class CitasController {
 		
 		public function __construct(){
-			require_once "models/RecetasModel.php";
+			require_once "models/CitasModel.php";
 		}
 		
 		public function index(){
 			
 			
-			$recetas = new Recetas_model();
-			$data["titulo"] = "Recetas";
-			$data["recetas"] = $recetas->get_recetas();
+			$citas = new Citas_model();
+			$data["titulo"] = "Citas";
+			$data["citas"] = $citas->get_citas();
 			
-			require_once "views/recetas/recetas.php";	
+			require_once "views/citas/citas.php";	
 		}
 		
 		public function nuevo(){
 			
-			$data["titulo"] = "Recetas";
-			require_once "views/recetas/recetas_nuevo.php";
+			$data["titulo"] = "Citas";
+			require_once "views/citas/citas_nuevo.php";
 		}
 		
 		public function guarda(){
@@ -31,20 +31,20 @@
 			$imagen = $_POST['imagen'];
 			$procedimiento = $_POST['procedimiento'];
 			
-			$recetas = new Recetas_model();
-			$recetas->insertar($nombre, $calorias, $tiempo, $porcion, $imagen, $procedimiento);
-			$data["titulo"] = "Recetas";
+			$citas = new Citas_model();
+			$citas->insertar($nombre, $calorias, $tiempo, $porcion, $imagen, $procedimiento);
+			$data["titulo"] = "Citas";
 			$this->index();
 		}
 		
 		public function modificar($id){
 			
-			$recetas = new Recetas_model();
+			$citas = new Citas_model();
 			
 			$data["id"] = $id;
-			$data["recetas"] = $recetas->get_receta($id);
-			$data["titulo"] = "Recetas";
-			require_once "views/recetas/recetas_modifica.php";
+			$data["citas"] = $citas->get_receta($id);
+			$data["titulo"] = "Citas";
+			require_once "views/citas/recetas_modifica.php";
 		}
 		
 		public function actualizar(){
@@ -57,17 +57,17 @@
 			$imagen = $_POST['imagen'];
 			$procedimiento = $_POST['procedimiento'];
 
-			$recetas = new Recetas_model();
-			$recetas->modificar($id, $nombre, $calorias, $tiempo, $porcion, $imagen, $procedimiento);
-			$data["titulo"] = "Recetas";
+			$citas = new Citas_model();
+			$citas->modificar($id, $nombre, $calorias, $tiempo, $porcion, $imagen, $procedimiento);
+			$data["titulo"] = "Citas";
 			$this->index();
 		}
 		
 		public function eliminar($id){
 			
-			$recetas = new Recetas_model();
-			$recetas->eliminar($id);
-			$data["titulo"] = "Recetas";
+			$citas = new Citas_model();
+			$citas->eliminar($id);
+			$data["titulo"] = "Citas";
 			$this->index();
 		}	
 	}
