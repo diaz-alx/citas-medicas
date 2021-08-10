@@ -22,7 +22,7 @@
 				<input type="hidden" id="id" name="id" value="<?php echo $data["id"]; ?>" />
 				
 				<div class="form-group">
-					<label for="nombre">Nombre</label>
+					<label for="sucursal">Nombre</label>
 					<input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $data["recetas"]["nombre"]?>" />
 				</div>
 				
